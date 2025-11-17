@@ -1,6 +1,6 @@
 package com.example.cgpacalculator.model;
 
-public class {
+public class Course{
     private String name;
     private String code;
     private double credit;
