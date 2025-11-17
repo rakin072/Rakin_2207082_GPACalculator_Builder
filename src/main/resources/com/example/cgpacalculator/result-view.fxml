@@ -3,10 +3,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml"
-           fx:controller="com.example.cgpacalculator.ResultController"
-           stylesheets="@style.css"
-           styleClass="background">
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.cgpacalculator.ResultController"
+      spacing="20"
+      alignment="CENTER"
+      stylesheets="@style.css"
+      styleClass="background"
+      prefWidth="800" prefHeight="600">
 
-    <Label fx:id="resultLabel" styleClass="title"/>
-</StackPane>
+    <Label fx:id="resultLabel" styleClass="title" />
+
+    <TableView fx:id="resultTable" prefHeight="400" prefWidth="700">
+
+        <columns>
+            <TableColumn fx:id="colName" text="Course Name" prefWidth="150"/>
+            <TableColumn fx:id="colCode" text="Course Code" prefWidth="120"/>
+            <TableColumn fx:id="colCredit" text="Credit" prefWidth="80"/>
+            <TableColumn fx:id="colTeacher1" text="Teacher 1" prefWidth="150"/>
+            <TableColumn fx:id="colTeacher2" text="Teacher 2" prefWidth="150"/>
+            <TableColumn fx:id="colGrade" text="Grade" prefWidth="70"/>
+        </columns>
+
+    </TableView>
+
+</VBox>
