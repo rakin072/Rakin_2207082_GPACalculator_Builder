@@ -6,7 +6,6 @@
 
 <VBox fx:id="rootPane" alignment="CENTER" prefHeight="600" prefWidth="800" spacing="20" styleClass="background-light" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.cgpacalculator.ResultController">
 
-    <!-- Top bar with Toggle Theme Button -->
     <HBox alignment="CENTER_RIGHT" spacing="10">
         <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
@@ -17,7 +16,7 @@
         <Button onAction="#onToggleTheme" styleClass="button-toggle-theme" text="Toggle Theme" />
     </HBox>
 
-    <!-- Table of courses -->
+
     <TableView fx:id="resultTable" prefHeight="400" prefWidth="750">
         <columns>
             <TableColumn fx:id="colName" prefWidth="150" text="Course Name" />
