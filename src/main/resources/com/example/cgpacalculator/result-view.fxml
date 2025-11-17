@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
+      fx:id="rootPane"
       fx:controller="com.example.cgpacalculator.ResultController"
       spacing="20"
       alignment="CENTER"
       stylesheets="@style.css"
-      styleClass="background"
+      styleClass="background-light"
       prefWidth="800" prefHeight="600">
 
     <Label fx:id="resultLabel" styleClass="title" />
 
     <TableView fx:id="resultTable" prefHeight="400" prefWidth="700">
-
         <columns>
             <TableColumn fx:id="colName" text="Course Name" prefWidth="150"/>
             <TableColumn fx:id="colCode" text="Course Code" prefWidth="120"/>
@@ -23,7 +22,9 @@
             <TableColumn fx:id="colTeacher2" text="Teacher 2" prefWidth="150"/>
             <TableColumn fx:id="colGrade" text="Grade" prefWidth="70"/>
         </columns>
-
     </TableView>
 
+    <Button text="Toggle Theme"
+            onAction="#onToggleTheme"
+            styleClass="button-secondary"/>
 </VBox>

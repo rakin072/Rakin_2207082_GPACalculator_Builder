@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.cgpacalculator.CgpaController">
+            fx:id="rootPane"
+            fx:controller="com.example.cgpacalculator.CgpaController"
+            styleClass="background-light"
+            stylesheets="@style.css">
 
     <top>
-        <Label fx:id="remainingCreditsLabel"
-               text="Remaining Credits: 15.00"
-               style="-fx-font-size: 16px; -fx-padding: 10;" />
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label fx:id="remainingCreditsLabel"
+                   text="Remaining Credits: 15.00"
+                   style="-fx-font-size: 16px;" />
+
+            <Button text="Toggle Theme"
+                    onAction="#onToggleTheme"
+                    styleClass="button-secondary"/>
+        </HBox>
     </top>
 
     <left>
@@ -41,7 +53,6 @@
                 <Button fx:id="addCourseButton"
                         text="Add Course"
                         onAction="#onAddCourse"/>
-
                 <Button text="Remove Selected"
                         onAction="#onRemoveCourse"/>
             </HBox>
@@ -72,5 +83,4 @@
             </TableView>
         </VBox>
     </center>
-
 </BorderPane>

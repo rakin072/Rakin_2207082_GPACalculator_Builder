@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:id="rootPane"
            fx:controller="com.example.cgpacalculator.HomeController"
            stylesheets="@style.css"
-           styleClass="background">
+           styleClass="background-light">
 
     <VBox spacing="20" alignment="CENTER">
         <Button fx:id="startButton"
                 text="Start GPA Calculator"
                 onAction="#onStart"
                 styleClass="button-primary"/>
+        <Button text="Toggle Theme"
+                onAction="#onToggleTheme"
+                styleClass="button-secondary"/>
     </VBox>
 </StackPane>

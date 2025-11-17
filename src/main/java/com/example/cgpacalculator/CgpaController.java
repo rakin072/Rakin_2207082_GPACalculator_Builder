@@ -9,8 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+
 import java.io.IOException;
 
 public class CgpaController {
@@ -32,8 +34,9 @@ public class CgpaController {
     @FXML private Button calculateButton;
     @FXML private Label remainingCreditsLabel;
 
-    private ObservableList<Course> courses = FXCollections.observableArrayList();
+    @FXML private BorderPane rootPane;
 
+    private ObservableList<Course> courses = FXCollections.observableArrayList();
     private final double REQUIRED_TOTAL_CREDITS = 15.00;
     private double currentTotalCredits = 0.0;
 
@@ -56,18 +59,14 @@ public class CgpaController {
         updateRemainingCredits();
     }
 
-
     private void updateRemainingCredits() {
         double remaining = REQUIRED_TOTAL_CREDITS - currentTotalCredits;
         if (remaining < 0) remaining = 0;
-
         remainingCreditsLabel.setText("Remaining Credits: " + String.format("%.2f", remaining));
     }
 
-
     @FXML
     protected void onAddCourse() {
-
         if (courseName.getText().isEmpty() ||
                 courseCode.getText().isEmpty() ||
                 credit.getText().isEmpty() ||
@@ -131,7 +130,6 @@ public class CgpaController {
         alert.showAndWait();
     }
 
-
     @FXML
     protected void onRemoveCourse() {
         Course selectedCourse = table.getSelectionModel().getSelectedItem();
@@ -151,11 +149,8 @@ public class CgpaController {
         confirm.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 courses.remove(selectedCourse);
-
-
                 currentTotalCredits = courses.stream().mapToDouble(Course::getCredit).sum();
                 updateRemainingCredits();
-
 
                 if (currentTotalCredits < REQUIRED_TOTAL_CREDITS) {
                     addCourseButton.setDisable(false);
@@ -177,7 +172,6 @@ public class CgpaController {
         });
     }
 
-
     @FXML
     protected void onCalculate(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/cgpacalculator/result-view.fxml"));
@@ -189,5 +183,16 @@ public class CgpaController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    private void onToggleTheme() {
+        if (rootPane.getStyleClass().contains("background-light")) {
+            rootPane.getStyleClass().remove("background-light");
+            rootPane.getStyleClass().add("background-dark");
+        } else {
+            rootPane.getStyleClass().remove("background-dark");
+            rootPane.getStyleClass().add("background-light");
+        }
     }
 }

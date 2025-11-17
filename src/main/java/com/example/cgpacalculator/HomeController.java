@@ -20,4 +20,19 @@ public class HomeController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    @FXML
+    private Parent rootPane;
+
+    @FXML
+    private void onToggleTheme() {
+        if (rootPane.getStyleClass().contains("background-light")) {
+            rootPane.getStyleClass().remove("background-light");
+            rootPane.getStyleClass().add("background-dark");
+        } else {
+            rootPane.getStyleClass().remove("background-dark");
+            rootPane.getStyleClass().add("background-light");
+        }
+    }
+
 }

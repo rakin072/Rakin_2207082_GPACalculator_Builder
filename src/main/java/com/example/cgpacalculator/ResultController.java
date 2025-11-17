@@ -3,6 +3,7 @@ package com.example.cgpacalculator;
 import com.example.cgpacalculator.model.Course;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -12,6 +13,9 @@ import javafx.beans.property.SimpleDoubleProperty;
 import java.text.DecimalFormat;
 
 public class ResultController {
+
+    @FXML
+    private Parent rootPane;
 
     @FXML
     private Label resultLabel;
@@ -92,5 +96,16 @@ public class ResultController {
             case "E"  -> 1.75;
             default   -> 0.0;
         };
+    }
+
+    @FXML
+    private void onToggleTheme() {
+        if (rootPane.getStyleClass().contains("background-light")) {
+            rootPane.getStyleClass().remove("background-light");
+            rootPane.getStyleClass().add("background-dark");
+        } else {
+            rootPane.getStyleClass().remove("background-dark");
+            rootPane.getStyleClass().add("background-light");
+        }
     }
 }
