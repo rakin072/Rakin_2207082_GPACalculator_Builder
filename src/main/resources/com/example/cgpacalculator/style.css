@@ -1,4 +1,4 @@
-
+/* ========================== LIGHT MODE ========================== */
 .background-light {
     -fx-background-color: linear-gradient(to bottom right, #f0f4f8, #d9e2ec);
     -fx-padding: 20;
@@ -25,17 +25,19 @@
     -fx-background-color: #3b5bdb;
 }
 
-.background-light .button-secondary {
+.background-light .button-secondary,
+.background-light .button-toggle-theme {
     -fx-background-color: #f0ad4e;
     -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-padding: 10 20;
+    -fx-font-size: 12px;
+    -fx-padding: 6 12;
     -fx-background-radius: 10;
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 1, 1);
 }
 
-.background-light .button-secondary:hover {
+.background-light .button-secondary:hover,
+.background-light .button-toggle-theme:hover {
     -fx-background-color: #ec971f;
 }
 
@@ -45,28 +47,39 @@
     -fx-font-weight: 500;
 }
 
+/* ========== LIGHT MODE TABLEVIEW ========== */
 .background-light .table-view {
-    -fx-background-color: white;
+    -fx-background-color: #ffffff;
     -fx-border-color: #cbd5e1;
     -fx-border-radius: 8;
     -fx-table-cell-border-color: #e2e8f0;
-    -fx-table-header-border-color: #94a3b8;
 }
 
 .background-light .table-view .column-header-background {
-    -fx-background-color: linear-gradient(to bottom, #1e3a8a, #3b5bdb);
+    -fx-background-color: linear-gradient(to bottom, #3b5bdb, #1e3a8a);
+    -fx-background-insets: 0, 1;
+    -fx-padding: 6;
 }
 
 .background-light .table-view .column-header,
 .background-light .table-view .column-header .label {
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* Fix filler gap background */
+.background-light .table-view .column-header-background .filler {
+    -fx-background-color: linear-gradient(to bottom, #3b5bdb, #1e3a8a);
 }
 
 .background-light .table-view .cell {
-    -fx-padding: 5 10;
+    -fx-padding: 6 10;
+    -fx-text-fill: #1e3a8a;
+    -fx-background-color: #f9fafb;
 }
 
+/* Form fields */
 .background-light .text-field,
 .background-light .combo-box {
     -fx-background-radius: 8;
@@ -82,8 +95,9 @@
 }
 
 
+/* ========================== DARK MODE ========================== */
 .background-dark {
-    -fx-background-color: linear-gradient(to bottom right, #1f2937, #111827);
+    -fx-background-color: linear-gradient(to bottom right, #111827, #1f2937);
     -fx-padding: 20;
 }
 
@@ -108,17 +122,19 @@
     -fx-background-color: #1d4ed8;
 }
 
-.background-dark .button-secondary {
+.background-dark .button-secondary,
+.background-dark .button-toggle-theme {
     -fx-background-color: #f59e0b;
     -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-padding: 10 20;
+    -fx-font-size: 12px;
+    -fx-padding: 6 12;
     -fx-background-radius: 10;
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 3, 0, 1, 1);
 }
 
-.background-dark .button-secondary:hover {
+.background-dark .button-secondary:hover,
+.background-dark .button-toggle-theme:hover {
     -fx-background-color: #d97706;
 }
 
@@ -128,29 +144,39 @@
     -fx-font-weight: 500;
 }
 
+/* ========== DARK MODE TABLEVIEW ========== */
 .background-dark .table-view {
     -fx-background-color: #1f2937;
-    -fx-border-color: #374151;
+    -fx-border-color: #4b5563;
     -fx-border-radius: 8;
-    -fx-table-cell-border-color: #4b5563;
-    -fx-table-header-border-color: #2563eb;
+    -fx-table-cell-border-color: #374151;
 }
 
 .background-dark .table-view .column-header-background {
-    -fx-background-color: linear-gradient(to bottom, #2563eb, #1d4ed8);
+    -fx-background-color: linear-gradient(to bottom, #0f172a, #2563eb);
+    -fx-background-insets: 0, 1;
+    -fx-padding: 6;
 }
 
 .background-dark .table-view .column-header,
 .background-dark .table-view .column-header .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* Fix filler gap background */
+.background-dark .table-view .column-header-background .filler {
+    -fx-background-color: linear-gradient(to bottom, #0f172a, #2563eb);
 }
 
 .background-dark .table-view .cell {
-    -fx-padding: 5 10;
-    -fx-text-fill: #f9fafb;
+    -fx-padding: 6 10;
+    -fx-text-fill: #fefefe;
+    -fx-background-color: #111827;
 }
 
+/* Form fields */
 .background-dark .text-field,
 .background-dark .combo-box {
     -fx-background-color: #374151;

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml"
            fx:id="rootPane"
@@ -13,8 +14,14 @@
                 text="Start GPA Calculator"
                 onAction="#onStart"
                 styleClass="button-primary"/>
-        <Button text="Toggle Theme"
-                onAction="#onToggleTheme"
-                styleClass="button-secondary"/>
     </VBox>
+
+    <Button text="Toggle Theme"
+            onAction="#onToggleTheme"
+            styleClass="button-small"
+            StackPane.alignment="TOP_RIGHT">
+        <StackPane.margin>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </StackPane.margin>
+    </Button>
 </StackPane>
