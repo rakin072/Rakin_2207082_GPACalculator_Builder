@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.cgpacalculator.HistoryController"
+            stylesheets="@style.css" prefWidth="800" prefHeight="600">
+
+    <children>
+        <VBox spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+
+            <Label text="GPA Calculation History" styleClass="title"/>
+
+
+            <HBox spacing="10">
+                <Label text="Search by Roll:" styleClass="label"/>
+                <TextField fx:id="rollField" promptText="Enter Student Roll/ID" styleClass="text-field" HBox.hgrow="ALWAYS"/>
+                <Button text="Search Roll" styleClass="button-primary" fx:id="searchRollButton"/>
+                <Button text="Show All History" styleClass="button-secondary" fx:id="showAllButton"/>
+            </HBox>
+
+
+            <TableView fx:id="historyTable" prefHeight="400" styleClass="table-view">
+                <columns>
+                    <TableColumn text="Roll" fx:id="rollColumn" prefWidth="100"/>
+                    <TableColumn text="GPA" fx:id="gpaColumn" prefWidth="100"/>
+                    <TableColumn text="Course List" fx:id="courseListColumn" prefWidth="600"/>
+                </columns>
+            </TableView>
+
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Back to Calculator" styleClass="button-secondary" fx:id="backButton"/>
+                <Button text="Remove Selected" styleClass="button-secondary" fx:id="removeSelectedButton"/>
+                <Button text="Clear All History" styleClass="button-secondary" fx:id="clearAllButton"/>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>
