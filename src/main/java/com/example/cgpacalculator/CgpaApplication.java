@@ -17,6 +17,8 @@ public class CgpaApplication extends Application {
         root.getStyleClass().add("background-light");
 
         Scene scene = new Scene(root);
+        stage.setWidth(1000);
+        stage.setHeight(700);
         stage.setTitle("CGPA Calculator");
         stage.setScene(scene);
         stage.show();
