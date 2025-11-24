@@ -13,11 +13,9 @@ public class DatabaseHelper {
     private static final String URL = "jdbc:sqlite:ResultInfo.db";
     private static final Gson gson = new Gson();
 
-
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL);
     }
-
 
     public static void createHistoryTable() {
         String query = """
@@ -36,11 +34,9 @@ public class DatabaseHelper {
         }
     }
 
-
     public static void insertHistory(String roll, double gpa, List<Course> courses) {
         String query = "INSERT INTO history (roll, gpa, courseList) VALUES (?, ?, ?)";
         String courseJson = gson.toJson(courses); // convert course list to JSON
-
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -57,63 +53,57 @@ public class DatabaseHelper {
 
     public static List<HistoryController.HistoryEntry> getAllHistory() {
         List<HistoryController.HistoryEntry> list = new ArrayList<>();
-        String query = "SELECT roll, gpa, courseList FROM history ORDER BY id DESC";
-
+        String query = "SELECT id, roll, gpa, courseList FROM history ORDER BY id DESC";
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String roll = rs.getString("roll");
                 String gpa = rs.getString("gpa");
                 String courseJson = rs.getString("courseList");
                 List<Course> courses = gson.fromJson(courseJson, new TypeToken<List<Course>>(){}.getType());
                 String courseSummary = buildCourseSummary(courses);
-                list.add(new HistoryController.HistoryEntry(roll, gpa, courseSummary));
+                list.add(new HistoryController.HistoryEntry(id, roll, gpa, courseSummary));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return list;
     }
 
-
     public static List<HistoryController.HistoryEntry> getHistoryByRoll(String roll) {
         List<HistoryController.HistoryEntry> list = new ArrayList<>();
-        String query = "SELECT roll, gpa, courseList FROM history WHERE roll = ? ORDER BY id DESC";
-
+        String query = "SELECT id, roll, gpa, courseList FROM history WHERE roll = ? ORDER BY id DESC";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, roll);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
+                    int id = rs.getInt("id");
                     String gpa = rs.getString("gpa");
                     String courseJson = rs.getString("courseList");
                     List<Course> courses = gson.fromJson(courseJson, new TypeToken<List<Course>>(){}.getType());
                     String courseSummary = buildCourseSummary(courses);
-                    list.add(new HistoryController.HistoryEntry(roll, gpa, courseSummary));
+                    list.add(new HistoryController.HistoryEntry(id, roll, gpa, courseSummary));
                 }
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return list;
     }
 
-
-    public static void deleteHistory(String roll, String courseSummary) {
-        String query = "DELETE FROM history WHERE roll = ? AND courseList LIKE ?";
-
+    public static void deleteHistoryById(int id) {
+        String query = "DELETE FROM history WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, roll);
-            pstmt.setString(2, "%" + courseSummary + "%");
+            pstmt.setInt(1, id);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -121,10 +111,8 @@ public class DatabaseHelper {
         }
     }
 
-
     public static void clearHistory() {
         String query = "DELETE FROM history";
-
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement()) {
             stmt.executeUpdate(query);
@@ -132,7 +120,6 @@ public class DatabaseHelper {
             e.printStackTrace();
         }
     }
-
 
     private static String buildCourseSummary(List<Course> courses) {
         StringBuilder sb = new StringBuilder();

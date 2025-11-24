@@ -4,7 +4,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class HistoryController {
 
@@ -60,7 +66,7 @@ public class HistoryController {
     private void removeSelectedEntry() {
         HistoryEntry selected = historyTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            DatabaseHelper.deleteHistory(selected.rollProperty().get(), selected.courseListProperty().get());
+            DatabaseHelper.deleteHistoryById(selected.getId());
             historyData.remove(selected);
         }
     }
@@ -71,21 +77,33 @@ public class HistoryController {
     }
 
     private void goBackToCalculator() {
-        // TODO: Implement navigation back to the calculator view
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/cgpacalculator/gpa-view.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) backButton.getScene().getWindow(); // get current window
+            stage.setScene(new Scene(root));
+            stage.setTitle("GPA Calculator");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-
     public static class HistoryEntry {
+        private final int id; // new ID field
         private final SimpleStringProperty roll;
         private final SimpleStringProperty gpa;
         private final SimpleStringProperty courseList;
 
-        public HistoryEntry(String roll, String gpa, String courseList) {
+        public HistoryEntry(int id, String roll, String gpa, String courseList) {
+            this.id = id;
             this.roll = new SimpleStringProperty(roll);
             this.gpa = new SimpleStringProperty(gpa);
             this.courseList = new SimpleStringProperty(courseList);
         }
 
+        public int getId() { return id; } // getter for ID
         public SimpleStringProperty rollProperty() { return roll; }
         public SimpleStringProperty gpaProperty() { return gpa; }
         public SimpleStringProperty courseListProperty() { return courseList; }
