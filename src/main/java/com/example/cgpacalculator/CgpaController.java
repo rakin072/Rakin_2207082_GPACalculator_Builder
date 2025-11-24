@@ -104,7 +104,7 @@ public class CgpaController {
         currentTotalCredits += creditValue;
         updateRemainingCredits();
 
-        if (currentTotalCredits >= REQUIRED_TOTAL_CREDITS) {
+        if (currentTotalCredits == REQUIRED_TOTAL_CREDITS) {
             addCourseButton.setDisable(true);
             credit.setDisable(true);
             courseName.setDisable(true);
